@@ -8,7 +8,7 @@ const List = require('../elemetobjects/list.js');
 
 class HomePage {
   constructor() {
-    this.data = {...data};
+    this.data = { ...data };
 
     /**@type {Object<string, Label>}*/
     this.labels = { ...selectors.labels };
@@ -45,6 +45,14 @@ class HomePage {
     }
   }
 
+  elements = {
+    labels: this.labels,
+    buttons: this.buttons,
+    inputs: this.inputs,
+    toggles: this.toggles,
+    lists: this.lists,
+  };
+
   addTodo(text) {
     this.inputs.newTodo.type(text, { release: false });
     this.inputs.newTodo.enter();
@@ -55,16 +63,15 @@ class HomePage {
    * @returns {string[]}
    */
   getAlltodosText() {
-    let todoElement;
     let todosTexts = [];
-
     const allTodos = this.lists.todosList.getAllElements();
 
-    for (const todo in allTodos) {
-      todoElement = new Label(todo);
+    for (const todo of allTodos) {
+      const todoElement = new Label(todo);
+      todosTexts.push(todoElement.getInnerText());
     }
 
-    return todoTexts;
+    return todosTexts;
   }
 
   getTodoByText(text) {
@@ -89,25 +96,33 @@ class HomePage {
 
   checkTodoByText(text) {
     const todo = this.lists.todosList.getChildByText(text);
-    const completionToggle = new Toggle(todo.get(selectors.toggles.completedToggle));
+    const completionToggle = new Toggle(
+      todo.get(selectors.toggles.completedToggle),
+    );
     completionToggle.check();
   }
 
   checkTodoByIndex(index = 0) {
     const todo = this.lists.todosList.getChildByIndex(index);
-    const completionToggle = new Toggle(todo.get(selectors.toggles.completedToggle));
+    const completionToggle = new Toggle(
+      todo.get(selectors.toggles.completedToggle),
+    );
     completionToggle.check();
   }
 
   uncheckTodoByText(text) {
     const todo = this.lists.todosList.getChildByText(text);
-    const completionToggle = new Toggle(todo.get(selectors.toggles.completedToggle));
+    const completionToggle = new Toggle(
+      todo.get(selectors.toggles.completedToggle),
+    );
     completionToggle.uncheck();
   }
 
   uncheckTodoByIndex(index = 0) {
     const todo = this.lists.todosList.getChildByIndex(index);
-    const completionToggle = new Toggle(todo.get(selectors.toggles.completedToggle));
+    const completionToggle = new Toggle(
+      todo.get(selectors.toggles.completedToggle),
+    );
     completionToggle.uncheck();
   }
 
@@ -134,7 +149,7 @@ class HomePage {
    * @returns {number}
    */
   getNumberOfTodos() {
-    return this.labels.todoCount.getInnerText().slice(0,1);
+    return this.labels.todoCount.getInnerText().slice(0, 1);
   }
 
   /**
@@ -142,7 +157,7 @@ class HomePage {
    * @param {'all'| 'active' | 'completed'} filterName
    */
   chooseFilter(filterName) {
-    this.buttons[filterName+'Filter'].click();
+    this.buttons[filterName + 'Filter'].click();
   }
 
   clearCompleted() {

@@ -21,6 +21,7 @@ class List extends BasicElement {
   }
 
   getChildByText(text) {
+    this.getElement();
     return this.element.contains(text).parent();
   }
 }

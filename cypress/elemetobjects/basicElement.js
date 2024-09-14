@@ -11,10 +11,12 @@ class BasicElement {
     }
   }
 
+
   getElement() {
-    if(!this.element) {
-        this.element = cy.get(selector);
+    if (!this.element) {
+      this.element = cy.get(this.selector);
     }
+    return this.element;
   }
 
   /**
@@ -24,7 +26,7 @@ class BasicElement {
   getInnerText() {
     this.getElement();
     return this.element.invoke('text').then((text) => {
-      text.trim();
+      text.trim()
     });
   }
 

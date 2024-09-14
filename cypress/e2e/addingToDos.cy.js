@@ -1,22 +1,17 @@
-const { before } = require("mocha");
-const HomePage = require("../pageobjects/homePage.js");
-
-/**@type {HomePage} */
-let homePage;
+const HomePage = require('../pageobjects/homePage.js');
 
 describe('Verify adding todos to the list is possible', () => {
-    
-    before('open browser on the ToDos Site', () => {
-        cy.visit('/');
-        const homePage = new HomePage();
-    })
+  /**@type {HomePage} */
+  let homePage;
 
-    it('Add a todo to the list', () => {
-        homePage.addTodo(homePage.data.args.todoName);
-        homePage.inputs.newTodo.getInnerText().should.equal('');
-        homePage.getTodoByText(homePage.data.args.todoName).should('be.visible');
-    })
+  beforeEach('open browser on the ToDos Site', () => {
+    cy.visit('/');
+    homePage = new HomePage();
+  });
 
-
-
-})
+  it('Add a todo to the list', () => {
+    homePage.addTodo(homePage.data.args.todoName);
+    (homePage.inputs.newTodo.getElement()).should('have.text', '');
+    homePage.getTodoByText(homePage.data.args.todoName).should('be.visible');
+  });
+});
