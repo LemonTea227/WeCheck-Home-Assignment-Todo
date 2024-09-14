@@ -7,6 +7,7 @@ class BasicElement {
       this.selector = selector;
       this.element;
     } else {
+      this.selector = selector;
       this.element = selector;
     }
   }
@@ -45,6 +46,15 @@ class BasicElement {
   rightClick(options = {}) {
     this.getElement();
     this.element.rightclick(options);
+  }
+
+  /**
+   * double clicks on the element
+   * @param {Partial<Cypress.ClickOptions>} options
+   */
+  doubleClick(options) {
+    this.getElement();
+    this.element.dblclick(options);
   }
 }
 

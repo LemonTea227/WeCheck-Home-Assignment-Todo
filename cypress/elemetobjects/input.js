@@ -13,8 +13,8 @@ class Input extends BasicElement {
    * @param {Partial<Cypress.TypeOptions>} options 
    */
   type(text, options = {}) {
-    this.getElement();
     this.clear();
+    this.getElement();
     this.element.type(text, options);
   }
 

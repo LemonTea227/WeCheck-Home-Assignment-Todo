@@ -84,20 +84,20 @@ class HomePage {
 
   deleteTodoByText(text) {
     const todo = this.lists.todosList.getChildByText(text);
-    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton));
+    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton.selector));
     deleteButton.showAndClick();
   }
 
   deleteTodoByIndex(index = 0) {
     const todo = this.lists.todosList.getChildByIndex(index);
-    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton));
+    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton.selector));
     deleteButton.showAndClick();
   }
 
   checkTodoByText(text) {
     const todo = this.lists.todosList.getChildByText(text);
     const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle),
+      todo.get(selectors.toggles.completedToggle.selector),
     );
     completionToggle.check();
   }
@@ -105,7 +105,7 @@ class HomePage {
   checkTodoByIndex(index = 0) {
     const todo = this.lists.todosList.getChildByIndex(index);
     const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle),
+      todo.get(selectors.toggles.completedToggle.selector),
     );
     completionToggle.check();
   }
@@ -113,7 +113,7 @@ class HomePage {
   uncheckTodoByText(text) {
     const todo = this.lists.todosList.getChildByText(text);
     const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle),
+      todo.get(selectors.toggles.completedToggle.selector),
     );
     completionToggle.uncheck();
   }
@@ -121,21 +121,21 @@ class HomePage {
   uncheckTodoByIndex(index = 0) {
     const todo = this.lists.todosList.getChildByIndex(index);
     const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle),
+      todo.get(selectors.toggles.completedToggle.selector),
     );
     completionToggle.uncheck();
   }
 
   changeNameOfATodoByName(currentName, newName) {
-    const todo = this.lists.todosList.getChildByText(text);
-    const editInput = new Input(todo.get(selectors.inputs.editInput));
+    const todo = this.getTodoByText(currentName).dblclick();
+    const editInput = new Input(todo.get(selectors.inputs.editInput.selector));
     editInput.type(newName, { release: false });
     editInput.enter();
   }
 
   changeNameOfATodoByIndex(index = 0, newName) {
-    const todo = this.lists.todosList.getChildByIndex(index);
-    const editInput = new Input(todo.get(selectors.inputs.editInput));
+    const todo = this.getTodoByIndex(index).dblclick();
+    const editInput = new Input(todo.get(selectors.inputs.editInput.selector));
     editInput.type(newName, { release: false });
     editInput.enter();
   }

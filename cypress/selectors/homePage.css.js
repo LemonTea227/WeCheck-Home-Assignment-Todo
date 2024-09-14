@@ -3,7 +3,7 @@ module.exports = {
     mainLabel: { selector: 'h1' },
     clearCompleted: { selector: '.clear-completed' },
     todoCount: { selector: '.todo-count' },
-    todoLabel: { selector: '[data-testid="todo-item-label"]' },
+    todoLabel: { selector: 'li [data-testid="todo-item-label"]' },
   },
   inputs: {
     newTodo: { selector: '.new-todo' },
