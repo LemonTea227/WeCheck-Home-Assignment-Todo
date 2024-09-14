@@ -1,5 +1,6 @@
 const BasicElement = require('./basicElement.js');
 
+
 class List extends BasicElement {
   /**
    * @param {string |  Cypress.Chainable<JQuery<HTMLElement>>} listSelector
@@ -23,7 +24,7 @@ class List extends BasicElement {
 
   getChildByText(text) {
     this.getElement();
-    return this.element.find(this.childSelector).contains(text);
+    return ((this.element.find(this.childSelector)).contains(new RegExp(text, "g")));
   }
 }
 

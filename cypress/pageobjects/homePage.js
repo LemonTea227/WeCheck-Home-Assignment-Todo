@@ -83,14 +83,14 @@ class HomePage {
   }
 
   deleteTodoByText(text) {
-    const todo = this.lists.todosList.getChildByText(text);
-    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton.selector));
+    const todo = this.getTodoByText(text);
+    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton.selector).first());
     deleteButton.showAndClick();
   }
 
   deleteTodoByIndex(index = 0) {
-    const todo = this.lists.todosList.getChildByIndex(index);
-    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton.selector));
+    const todo = this.getTodoByIndex(index);
+    const deleteButton = new Button(todo.find(selectors.buttons.deleteButton.selector));
     deleteButton.showAndClick();
   }
 
@@ -137,7 +137,7 @@ class HomePage {
 
   changeNameOfATodoByIndex(index = 0, newName) {
     const todo = this.getTodoByIndex(index).dblclick();
-    const editInput = new Input(todo.get(selectors.inputs.editInput.selector));
+    const editInput = new Input(todo.find(selectors.inputs.editInput.selector));
     editInput.type(newName, { release: false });
     editInput.enter();
   }

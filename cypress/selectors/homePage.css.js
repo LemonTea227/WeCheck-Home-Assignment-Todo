@@ -13,7 +13,7 @@ module.exports = {
     allFilter: { selector: '[href="#/"]' },
     activeFilter: { selector: '[href="#/active]' },
     completedFiler: { selector: '[href="#/completed]' },
-    deleteButton: { selector: '.destroy' },
+    deleteButton: { selector: 'button.destroy' },
     toggleCompletion: { selector: '[data-testid="toggle-all"]' },
   },
   toggles: {

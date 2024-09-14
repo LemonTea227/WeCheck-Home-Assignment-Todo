@@ -1,10 +1,10 @@
 const HomePage = require('../pageobjects/homePage.js');
 
-describe('Verify adding todos to the list is possible', () => {
+describe('Check editing todos to the list is working correctly', () => {
   /**@type {HomePage} */
   let homePage;
 
-  beforeEach('open browser on the ToDos Site', () => {
+  beforeEach('open browser on the Todos Site', () => {
     cy.visit('/');
     homePage = new HomePage();
   });
