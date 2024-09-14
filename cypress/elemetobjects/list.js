@@ -18,7 +18,7 @@ class List extends BasicElement {
 
   getChildByIndex(index = 0) {
     this.getElement();
-    return this.element.find(this.childSelector).eq(index);
+    return ((this.element.find(this.childSelector)).eq(index));
   }
 
   getChildByText(text) {

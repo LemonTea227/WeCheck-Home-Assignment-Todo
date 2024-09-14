@@ -95,35 +95,37 @@ class HomePage {
   }
 
   checkTodoByText(text) {
-    const todo = this.lists.todosList.getChildByText(text);
-    const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle.selector),
-    );
+    const completionToggle = this.getTodoCompletedToggleByText(text);
     completionToggle.check();
   }
 
   checkTodoByIndex(index = 0) {
-    const todo = this.lists.todosList.getChildByIndex(index);
-    const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle.selector),
-    );
+    const completionToggle = this.getTodoCompletedToggleByIndex(index);
     completionToggle.check();
   }
 
   uncheckTodoByText(text) {
-    const todo = this.lists.todosList.getChildByText(text);
-    const completionToggle = new Toggle(
-      todo.get(selectors.toggles.completedToggle.selector),
-    );
+    const completionToggle = this.getTodoCompletedToggleByText(text);
     completionToggle.uncheck();
   }
 
   uncheckTodoByIndex(index = 0) {
-    const todo = this.lists.todosList.getChildByIndex(index);
-    const completionToggle = new Toggle(
+    const completionToggle = this.getTodoCompletedToggleByIndex(index);
+    completionToggle.uncheck();
+  }
+
+  getTodoCompletedToggleByText(text) {
+    const todo = this.lists.todosList.getChildByText(text);
+    return new Toggle(
       todo.get(selectors.toggles.completedToggle.selector),
     );
-    completionToggle.uncheck();
+  }
+
+  getTodoCompletedToggleByIndex(index = 0) {
+    const todo = this.lists.todosList.getChildByIndex(index);
+    return new Toggle(
+      todo.find(selectors.toggles.completedToggle.selector),
+    );
   }
 
   changeNameOfATodoByName(currentName, newName) {

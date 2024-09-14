@@ -16,16 +16,15 @@ describe('Verify adding todos to the list is possible', () => {
   });
 
   it('Add some todos and see that all are inserted correctly', () => {
-    for (let i = 0; i < 20; i++) {
-      homePage.addTodo(homePage.data.args.genericTodoName + i.toString());
-    }
+    const todos = Array.from(
+      { length: 20 },
+      (_, i) => homePage.data.args.genericTodoName + (i+1),
+    );
+
+    todos.forEach((todo) => homePage.addTodo(todo));
 
     homePage.inputs.newTodo.getElement().should('have.text', '');
 
-    for (let i = 0; i < 20; i++) {
-      homePage
-        .getTodoByText(homePage.data.args.genericTodoName + i.toString())
-        .should('be.visible');
-    }
+    todos.forEach((todo) => homePage.getTodoByText(todo).should('be.visible'));
   });
 });

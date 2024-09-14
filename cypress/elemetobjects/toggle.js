@@ -8,11 +8,6 @@ class Input extends BasicElement {
     super(selector);
   }
 
-  isChecked() {
-    this.getElement();
-    return this.element.is(":indeterminate");
-  }
-
   check() {
     this.getElement();
     this.element.check();
