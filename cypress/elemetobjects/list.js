@@ -12,17 +12,18 @@ class List extends BasicElement {
 
   getAllElements() {
     this.getElement();
-    return this.element.children();
+    this.children = this.element.children();
+    return this.children;
   }
 
   getChildByIndex(index = 0) {
     this.getElement();
-    return this.element.get(this.childSelector).eq(index);
+    return this.element.find(this.childSelector).eq(index);
   }
 
   getChildByText(text) {
     this.getElement();
-    return this.element.contains(text).parent();
+    return this.element.find(this.childSelector).contains(text);
   }
 }
 

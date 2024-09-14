@@ -1,6 +1,7 @@
 {
     "inputs": {},
     "args": {
-        "todoName": "WeCheck Home Assignment"
+        "todoName": "WeCheck Home Assignment",
+        "genericTodoName": "todo"
     }
 }

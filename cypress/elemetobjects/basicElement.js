@@ -11,9 +11,8 @@ class BasicElement {
     }
   }
 
-
   getElement() {
-    if (!this.element) {
+    if (!Cypress.isCy(this.element) || !Cypress.isCy(this.selector)) {
       this.element = cy.get(this.selector);
     }
     return this.element;

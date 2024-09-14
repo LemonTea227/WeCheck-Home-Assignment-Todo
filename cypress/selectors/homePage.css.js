@@ -22,7 +22,7 @@ module.exports = {
   lists: {
     todosList: { 
         listSelector: '[data-testid="todo-list"]',
-        childSelector: '[data-testid="todo-item"]' 
+        childSelector: 'li[data-testid="todo-item"]' 
     },
   },
 };
