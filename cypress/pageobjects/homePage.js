@@ -60,18 +60,10 @@ class HomePage {
 
   /**
    * returns all the todos text
-   * @returns {string[]}
+   * @returns {Promise<string[]>}
    */
-  getAlltodosText() {
-    let todosTexts = [];
-    const allTodos = this.lists.todosList.getAllElements();
-
-    for (const todo of allTodos) {
-      const todoElement = new Label(todo);
-      todosTexts.push(todoElement.getInnerText());
-    }
-
-    return todosTexts;
+  async getAlltodosText() {
+    return await this.lists.todosList.getAllChildrenText();
   }
 
   getTodoByText(text) {
@@ -84,13 +76,17 @@ class HomePage {
 
   deleteTodoByText(text) {
     const todo = this.getTodoByText(text);
-    const deleteButton = new Button(todo.get(selectors.buttons.deleteButton.selector).first());
+    const deleteButton = new Button(
+      todo.get(selectors.buttons.deleteButton.selector).first(),
+    );
     deleteButton.showAndClick();
   }
 
   deleteTodoByIndex(index = 0) {
     const todo = this.getTodoByIndex(index);
-    const deleteButton = new Button(todo.find(selectors.buttons.deleteButton.selector));
+    const deleteButton = new Button(
+      todo.find(selectors.buttons.deleteButton.selector),
+    );
     deleteButton.showAndClick();
   }
 
@@ -116,16 +112,12 @@ class HomePage {
 
   getTodoCompletedToggleByText(text) {
     const todo = this.lists.todosList.getChildByText(text);
-    return new Toggle(
-      todo.get(selectors.toggles.completedToggle.selector),
-    );
+    return new Toggle(todo.get(selectors.toggles.completedToggle.selector));
   }
 
   getTodoCompletedToggleByIndex(index = 0) {
     const todo = this.lists.todosList.getChildByIndex(index);
-    return new Toggle(
-      todo.find(selectors.toggles.completedToggle.selector),
-    );
+    return new Toggle(todo.find(selectors.toggles.completedToggle.selector));
   }
 
   changeNameOfATodoByName(currentName, newName) {
@@ -159,7 +151,19 @@ class HomePage {
    * @param {'all'| 'active' | 'completed'} filterName
    */
   chooseFilter(filterName) {
-    this.buttons[filterName + 'Filter'].click();
+    const filterUrl = this.data.inputs.urls[filterName];
+
+    this.buttons[filterName + 'Filter'].click({ waitForAnimations: false });
+
+    cy.location('hash').should('eq', filterUrl);
+
+    // Reset or update the application state
+    cy.window().then((win) => {
+      if (!win.store) {
+        win.store = initializeStore(); // Replace with your store initialization logic
+      }
+      win.store.dispatch({ type: 'RESET_STATE' });
+    });
   }
 
   clearCompleted() {

@@ -9,7 +9,7 @@ describe('Check deleting todos to the list is working correctly', () => {
     homePage = new HomePage();
   });
 
-  it.skip('Add one todo to the list and delete it', () => {
+  it('Add one todo to the list and delete it', () => {
     homePage.addTodo(homePage.data.args.todoName);
     homePage.inputs.newTodo.getElement().should('have.text', '');
     const todo = homePage

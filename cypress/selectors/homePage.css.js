@@ -10,9 +10,9 @@ module.exports = {
     editInput: { selector: '.edit' },
   },
   buttons: {
-    allFilter: { selector: '[href="#/"]' },
-    activeFilter: { selector: '[href="#/active]' },
-    completedFiler: { selector: '[href="#/completed]' },
+    allFilter: { selector: 'a[href="#/"]' },
+    activeFilter: { selector: 'a[href="#/active"]' },
+    completedFilter: { selector: 'a[href="#/completed"]' },
     deleteButton: { selector: 'button.destroy' },
     toggleCompletion: { selector: '[data-testid="toggle-all"]' },
   },

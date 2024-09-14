@@ -26,6 +26,18 @@ class List extends BasicElement {
     this.getElement();
     return ((this.element.find(this.childSelector)).contains(new RegExp(text, "g")));
   }
+
+  /**
+   * returns all the list children text
+   * @returns {Promise<string[]>}
+   */
+  getAllChildrenText() {
+    this.getElement();
+    return this.element.get(this.childSelector).then(($els) => {
+      const texts = Cypress._.map($els, 'innerText');
+      return texts;
+    });
+  }
 }
 
 module.exports = List;

@@ -1,8 +1,15 @@
 {
-    "inputs": {},
-    "args": {
-        "todoName": "WeCheck Home Assignment",
-        "genericTodoName": "todo",
-        "editedTodoName": "edited Cypress Assignment"
+  "inputs": {
+    "urls": {
+      "all": "#/",
+      "active": "#/active",
+      "completed": "#/completed"
     }
+  },
+  "args": {
+    "todoName": "WeCheck Home Assignment",
+    "secondTodoName": "Just Do It!!!",
+    "genericTodoName": "todo",
+    "editedTodoName": "edited Cypress Assignment"
+  }
 }
